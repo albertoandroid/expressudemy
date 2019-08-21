@@ -6,7 +6,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/api/cars/list',(req, res)=>{
-    res.send(['BMW S1', 'AUDI A3', 'Mercedes Clase A'])
+    res.send(['BMW X1', 'AUDI A3', 'Mercedes Clase A'])
 })
  
 app.listen(3003, ()=> console.log('Escuchando Puerto 3003'))
