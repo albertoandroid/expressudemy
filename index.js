@@ -119,5 +119,17 @@ app.put('/api/cars/:id', [
 
 })
 
+app.delete('/api/cars/:id', (req, res)=>{
+    const coche = coches.find(coche=> coche.id === parseInt(req.params.id))
+
+    if(!coche){
+        return res.status(404).send('El coche con ese ID no esta, no se puede borrar')
+    }
+
+    const index = coches.indexOf(coche)
+    coches.splice(index,1)
+    res.status(200).send('coche borrado')
+
+})
 
 app.listen(port, ()=> console.log('Escuchando Puerto: ' + port))
