@@ -10,6 +10,16 @@ app.use(function (req, res, next){
     next()
 })
 
+app.use('/api/cars/list', function(req, res, next){
+    console.log('Request Type: ', req.method)
+    next()
+})
+
+app.use('/api/loggin', function(req, res, next){
+    console.log('loggin')
+    next()
+})
+
 
 var coches = [
     {id: 0, company: 'BMW', model: 'X3', year: '2020' },
