@@ -96,4 +96,28 @@ app.post('/api/cars3', [
 
 })
 
+app.put('/api/cars/:id', [
+    check('company').isLength({min: 3}),
+    check('model').isLength({min: 3})
+],(req, res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    const coche = coches.find(coche=> coche.id === parseInt(req.params.id))
+
+    if(!coche){
+        return res.status(404).send('El coche con ese ID no esta')
+    }
+
+    coche.company = req.body.company
+    coche.model = req.body.model
+    coche.year = req.body.year
+    
+    res.status(204).send()
+
+})
+
+
 app.listen(port, ()=> console.log('Escuchando Puerto: ' + port))
