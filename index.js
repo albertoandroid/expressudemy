@@ -2,13 +2,11 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3003
 const { check, validationResult } = require('express-validator');
+const date = require('./date')
 
 app.use(express.json())
 
-app.use(function (req, res, next){
-    console.log('Time: ', Date.now())
-    next()
-})
+app.use(date)
 
 app.use('/api/cars/list', function(req, res, next){
     console.log('Request Type: ', req.method)
