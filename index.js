@@ -1,6 +1,13 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3003
+
+
+var coches = [
+    {id=0, company: 'BMW', model: 'X3', year: '2020' },
+    {id=0, company: 'Audi', model: 'A!', year: '2021' },
+    {id=0, company: 'Mercedes', model: 'Clase A', year: '2022' }
+]
  
 app.get('/', function (req, res) {
   res.send('Hello World')
