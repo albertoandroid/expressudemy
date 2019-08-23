@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3003
+const { check, validationResult } = require('express-validator');
 
 app.use(express.json())
 
@@ -58,6 +59,28 @@ app.post('/api/cars2', (req, res)=>{
     if(!req.body.company || req.body.company.length < 3 ){
         res.status(400).send('Introduce la empresa correcto')
         return
+    }
+
+    var carId = coches.length;
+    var coche ={
+        id: carId,
+        company: req.body.company,
+        model: req.body.model,
+        year: req.body.year
+    }
+    
+    coches.push(coche)
+    res.status(201).send(coche)
+
+})
+
+app.post('/api/cars3', [
+    check('company').isLength({min: 3}),
+    check('model').isLength({min: 3})
+],(req, res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
     }
 
     var carId = coches.length;
