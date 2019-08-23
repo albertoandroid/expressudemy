@@ -4,9 +4,9 @@ const port = process.env.PORT || 3003
 
 
 var coches = [
-    {id=0, company: 'BMW', model: 'X3', year: '2020' },
-    {id=0, company: 'Audi', model: 'A!', year: '2021' },
-    {id=0, company: 'Mercedes', model: 'Clase A', year: '2022' }
+    {id: 0, company: 'BMW', model: 'X3', year: '2020' },
+    {id: 1, company: 'Audi', model: 'A!', year: '2021' },
+    {id: 2, company: 'Mercedes', model: 'Clase A', year: '2022' }
 ]
  
 app.get('/', function (req, res) {
@@ -25,5 +25,8 @@ app.get('/api/cars/:company/:model',(req, res)=>{
     res.send(req.params)
 })
 
- 
+app.get('/api/cars/', (req, res)=> {
+    res.send(coches)
+})
+
 app.listen(port, ()=> console.log('Escuchando Puerto: ' + port))
