@@ -3,8 +3,11 @@ const app = express()
 const port = process.env.PORT || 3003
 const { check, validationResult } = require('express-validator');
 const date = require('./date')
+const morgan = require('morgan')
 
 app.use(express.json())
+
+app.use(morgan('tiny'))
 
 app.use(date)
 
