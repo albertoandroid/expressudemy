@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3003
 
+app.use(express.json())
+
 
 var coches = [
     {id: 0, company: 'BMW', model: 'X3', year: '2020' },
@@ -37,6 +39,19 @@ app.get('/api/cars/:company', (req, res)=>{
     }else{
         res.send(coche)
     }
+})
+
+app.post('/api/cars', (req, res)=>{
+    var carId = coches.length;
+    var coche ={
+        id: carId,
+        company: req.body.company,
+        model: req.body.model,
+        year: req.body.year
+    }
+    coches.push(coche)
+    res.send(coche)
+
 })
 
 app.listen(port, ()=> console.log('Escuchando Puerto: ' + port))
