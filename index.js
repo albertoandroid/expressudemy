@@ -5,6 +5,11 @@ const { check, validationResult } = require('express-validator');
 
 app.use(express.json())
 
+app.use(function (req, res, next){
+    console.log('Time: ', Date.now())
+    next()
+})
+
 
 var coches = [
     {id: 0, company: 'BMW', model: 'X3', year: '2020' },
@@ -131,5 +136,7 @@ app.delete('/api/cars/:id', (req, res)=>{
     res.status(200).send('coche borrado')
 
 })
+
+
 
 app.listen(port, ()=> console.log('Escuchando Puerto: ' + port))
