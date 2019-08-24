@@ -1,6 +1,13 @@
 const express = require('express')
 //const app = express()
 const router = express.Router()
+const { check, validationResult } = require('express-validator');
+
+var coches = [
+    {id: 0, company: 'BMW', model: 'X3', year: '2020' },
+    {id: 1, company: 'Audi', model: 'A1', year: '2021' },
+    {id: 2, company: 'Mercedes', model: 'Clase A', year: '2022' }
+]
 
 router.get('/list',(req, res)=>{
     res.send(['BMW X1', 'AUDI A3', 'Mercedes Clase A'])
